@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
             winLoseText.color = Color.black;
             winLoseBG.enabled = true;
             winLoseBG.color = Color.green;
-            // reload();
+            StartCoroutine(LoadScene(3));
         }
     }
 
@@ -73,17 +74,8 @@ public class PlayerController : MonoBehaviour
             winLoseText.color = Color.white;
             winLoseBG.enabled = true;
             winLoseBG.color = Color.red;
-            // reload();
+            StartCoroutine(LoadScene(3));
         }
-    }
-
-    /// <summary>Reloads the scene</summary>
-    void reload()
-    {
-        SceneManager.LoadScene("maze");
-        score = 0;
-        health = 5;
-        Debug.Log("Game Reloaded!");
     }
 
     /// <summary>Updates ScoreText object with current player score</summary>
@@ -96,5 +88,16 @@ public class PlayerController : MonoBehaviour
     void SetHealthText()
     {
         healthText.text = $"Health: {health}";
+    }
+
+    /// <summary>Reloads maze scene</summary>
+    IEnumerator LoadScene(float seconds)
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene("maze");
+        score = 0;
+        health = 5;
+        // Debug.Log("Game Reloaded!");
     }
 }

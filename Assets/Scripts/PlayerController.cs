@@ -45,9 +45,12 @@ public class PlayerController : MonoBehaviour
         }
         if (other.tag == "Trap")
         {
-            health--;
-            // Debug.Log($"health: {health}");
-            SetHealthText();
+            if (health > 0)
+            {
+                health--;
+                // Debug.Log($"health: {health}");
+                SetHealthText();
+            }
         }
         if (other.tag == "Goal")
         {
@@ -65,8 +68,12 @@ public class PlayerController : MonoBehaviour
     {
         if (health == 0)
         {
-            Debug.Log("Game Over!");
-            reload();
+            // Debug.Log("Game Over!");
+            winLoseText.text = "Game Over!";
+            winLoseText.color = Color.white;
+            winLoseBG.enabled = true;
+            winLoseBG.color = Color.red;
+            // reload();
         }
     }
 

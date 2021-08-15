@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /// <summary>Handles player controller class</summary>
@@ -8,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 500;
     private int score = 0;
     public int health = 5;
+    public Text scoreText;
+
     Rigidbody body;
 
     // Start is called before the first frame update
@@ -32,7 +35,8 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Pickup")
         {
             score++;
-            Debug.Log($"Score: {score}");
+            // Debug.Log($"Score: {score}");
+            SetScoreText();
             Destroy(other.gameObject);
         }
         if (other.tag == "Trap")
@@ -64,5 +68,11 @@ public class PlayerController : MonoBehaviour
         score = 0;
         health = 5;
         Debug.Log("Game Reloaded!");
+    }
+
+    /// <summary>Update ScoreText object with current player score</summary>
+    void SetScoreText()
+    {
+        scoreText.text = $"Score: {score}";
     }
 }

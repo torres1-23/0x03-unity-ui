@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     public int health = 5;
     public Text scoreText;
+    public Text healthText;
 
     Rigidbody body;
 
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Trap")
         {
             health--;
-            Debug.Log($"health: {health}");
+            // Debug.Log($"health: {health}");
+            SetHealthText();
         }
         if (other.tag == "Goal")
         {
@@ -70,9 +72,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Game Reloaded!");
     }
 
-    /// <summary>Update ScoreText object with current player score</summary>
+    /// <summary>Updates ScoreText object with current player score</summary>
     void SetScoreText()
     {
         scoreText.text = $"Score: {score}";
+    }
+
+    /// <summary>Updates HealthText object with current player health</summary>
+    void SetHealthText()
+    {
+        healthText.text = $"Health: {health}";
     }
 }

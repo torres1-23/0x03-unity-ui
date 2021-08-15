@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>PlayButton on click load the maze scene </summary>
+    public void PlayMaze()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene("maze", LoadSceneMode.Single);
     }
 }

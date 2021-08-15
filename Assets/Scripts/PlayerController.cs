@@ -64,7 +64,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>If player runs out of heal, reload the scene</summary>
+    /// <summary>If player runs out of heal, reload the scene, if ESC key
+    /// is pressed, go to main menu</summary>
     void Update()
     {
         if (health == 0)
@@ -75,6 +76,10 @@ public class PlayerController : MonoBehaviour
             winLoseBG.enabled = true;
             winLoseBG.color = Color.red;
             StartCoroutine(LoadScene(3));
+        }
+        if (Input.GetKey("escape"))
+        {
+            SceneManager.LoadScene("menu", LoadSceneMode.Single);
         }
     }
 

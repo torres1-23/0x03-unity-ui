@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public int health = 5;
     public Text scoreText;
     public Text healthText;
+    public Image winLoseBG;
+    public Text winLoseText;
 
     Rigidbody body;
 
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        winLoseBG.enabled = false;
     }
 
     /// <summary>Updates velocity of player rigidbody</summary>
@@ -48,8 +51,12 @@ public class PlayerController : MonoBehaviour
         }
         if (other.tag == "Goal")
         {
-            Debug.Log($"You win\nScore: {score}");
-            reload();
+            // Debug.Log($"You win\nScore: {score}");
+            winLoseText.text = "You win!";
+            winLoseText.color = Color.black;
+            winLoseBG.enabled = true;
+            winLoseBG.color = Color.green;
+            // reload();
         }
     }
 
